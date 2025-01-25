@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Priyanka, Be My Valentine?</title>
+    <style>
+        body {
+            text-align: center;
+            font-family: Arial, sans-serif;
+            background-color: #ffe6e6;
+            overflow: hidden;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            margin-top: 100px;
+            padding: 0 20px;
+        }
+        h1 {
+            color: #ff4d4d;
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+        h2 {
+            font-size: 1.8em;
+            margin-bottom: 20px;
+        }
+        .buttons button {
+            font-size: 1em;
+            padding: 10px 20px;
+            margin: 10px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+        .yes {
+            background-color: #ff4d4d;
+            color: white;
+        }
+        .no {
+            background-color: #cccccc;
+            color: black;
+            position: absolute;
+        }
+        .hidden {
+            display: none;
+        }
+        .heart {
+            position: absolute;
+            color: red;
+            font-size: 1.5em;
+            animation: fall 3s linear infinite;
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+        @keyframes fall {
+            from { transform: translateY(-100px); }
+            to { transform: translateY(100vh); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container" id="main-content">
+        <h1>Hey Priyanka! 💖</h1>
+        <h2>Will you be my Valentine? 🥰</h2>
+        <div class="buttons">
+            <button class="yes" onclick="showCelebration()">Yes</button>
+            <button class="no" id="noButton">No</button>
+        </div>
+    </div>
+    <div id="celebration" class="hidden">
+        <h1 style="color: red; font-size: 2.5em;">YAYYYYYYYYY! ❤️</h1>
+        <img src="image.jpg" alt="Happy Gif">
+    </div>
+    <script>
+        function showCelebration() {
+            document.getElementById('main-content').style.display = 'none';
+            document.getElementById('celebration').classList.remove('hidden');
+            generateHearts();
+        }
+        
+        function moveNoButton(event) {
+            let button = document.getElementById('noButton');
+            let x = Math.random() * (window.innerWidth - 100);
+            let y = Math.random() * (window.innerHeight - 50);
+            button.style.left = `${x}px`;
+            button.style.top = `${y}px`;
+        }
+        
+        document.getElementById('noButton').addEventListener('mouseover', moveNoButton);
+        
+        function generateHearts() {
+            for (let i = 0; i < 50; i++) {
+                let heart = document.createElement('div');
+                heart.innerHTML = '❤️';
+                heart.classList.add('heart');
+                heart.style.left = Math.random() * window.innerWidth + 'px';
+                heart.style.animationDuration = (Math.random() * 2 + 2) + 's';
+                document.body.appendChild(heart);
+            }
+        }
+    </script>
+</body>
+</html>
